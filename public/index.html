@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BGIC — Building Materials, Rentals &amp; Contracts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">B<span>GIC</span><small>BUILDING MATERIALS · RENTALS · CONTRACTS</small></div>
+    <nav>
+      <button data-view="home" class="active">Home</button>
+      <button data-view="materials">Materials</button>
+      <button data-view="rentals">Rentals</button>
+      <button data-view="contracts">Contracts</button>
+      <button data-view="cart" class="cart-btn">Cart <span class="cart-count" id="cartCount">0</span></button>
+      <button data-view="account" id="accountNavBtn">Login / Register</button>
+      <button data-view="admin">Admin</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section class="view active" id="view-home">
+    <div class="hero">
+      <div class="hero-inner">
+        <h1>Everything your site needs, from foundation to finish.</h1>
+        <p>Cement, blocks, roofing, plumbing and electrical supplies — plus equipment rentals and full contracts for houses, schools and boreholes. One supplier, one delivery.</p>
+        <div class="hero-actions">
+          <button class="btn btn-amber" data-view="materials">Browse materials</button>
+          <button class="btn btn-outline" data-view="contracts">Request a contract</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head"><h2>What we offer</h2></div>
+    <div class="grid" style="margin-bottom:50px;">
+      <div class="card"><div class="card-media">Materials</div><div class="card-body">
+        <div class="card-name">Building Materials</div>
+        <div class="card-desc">Cement, blocks, iron rods, roofing sheets, pipes, wires and more — buy in bulk with online payment.</div>
+        <button class="btn btn-ghost btn-small" data-view="materials">View materials</button>
+      </div></div>
+      <div class="card"><div class="card-media">Rentals</div><div class="card-body">
+        <div class="card-name">Equipment Rentals</div>
+        <div class="card-desc">Mixers, generators, scaffolding, wheelbarrows and site equipment, rented by the day.</div>
+        <button class="btn btn-ghost btn-small" data-view="rentals">View rentals</button>
+      </div></div>
+      <div class="card"><div class="card-media">Contracts</div><div class="card-body">
+        <div class="card-name">Construction Contracts</div>
+        <div class="card-desc">Full house builds, schools, boreholes, renovations — tell us the project, get a quote.</div>
+        <button class="btn btn-ghost btn-small" data-view="contracts">Request a quote</button>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- MATERIALS -->
+  <section class="view" id="view-materials">
+    <div class="section-head">
+      <h2>Building Materials</h2>
+      <span class="count" id="materialsCount"></span>
+    </div>
+    <div class="chips" id="materialChips"></div>
+    <div class="grid" id="materialsGrid"></div>
+  </section>
+
+  <!-- RENTALS -->
+  <section class="view" id="view-rentals">
+    <div class="section-head">
+      <h2>Equipment Rentals</h2>
+      <span class="count" id="rentalsCount"></span>
+    </div>
+    <p style="color:var(--concrete);margin-bottom:20px;max-width:560px;">Rentals are priced per day. Add to cart, choose number of days at checkout notes, and pay online — our team confirms pickup/delivery after payment.</p>
+    <div class="grid" id="rentalsGrid"></div>
+  </section>
+
+  <!-- CONTRACTS -->
+  <section class="view" id="view-contracts">
+    <div class="section-head"><h2>Request a Contract</h2></div>
+    <p style="color:var(--concrete);margin-bottom:20px;max-width:560px;">Tell us about your project — house construction, school building, borehole drilling, renovation, or anything else. Our team will review and contact you with a quote.</p>
+    <div class="form-card">
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" id="cName" placeholder="e.g. Ahmed Bello">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="tel" id="cPhone" placeholder="080...">
+        </div>
+        <div class="field">
+          <label>Project Type</label>
+          <select id="cType">
+            <option>House Construction</option>
+            <option>School Building</option>
+            <option>Borehole Drilling</option>
+            <option>Renovation</option>
+            <option>Fencing / Perimeter Wall</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Location / Site Address</label>
+        <input type="text" id="cLocation" placeholder="City, State">
+      </div>
+      <div class="field">
+        <label>Estimated Budget (₦, optional)</label>
+        <input type="number" id="cBudget" placeholder="e.g. 5000000">
+      </div>
+      <div class="field">
+        <label>Project Description</label>
+        <textarea id="cDesc" placeholder="Number of rooms, land size, timeline, any specifics..."></textarea>
+      </div>
+      <button class="btn btn-amber" id="submitContractBtn" style="width:100%;">Submit Request</button>
+    </div>
+  </section>
+
+  <!-- ACCOUNT -->
+  <section class="view" id="view-account">
+    <div class="section-head"><h2 id="accountHeading">My Account</h2></div>
+
+    <div id="accountLoggedOut">
+      <div style="display:flex;gap:30px;flex-wrap:wrap;">
+        <div class="form-card">
+          <h3 style="font-size:22px;margin-bottom:14px;">Log In</h3>
+          <div class="field">
+            <label>Phone Number</label>
+            <input type="tel" id="loginPhone">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" id="loginPassword">
+          </div>
+          <button class="btn btn-amber" id="loginBtn" style="width:100%;">Log In</button>
+        </div>
+
+        <div class="form-card">
+          <h3 style="font-size:22px;margin-bottom:14px;">Create an Account</h3>
+          <div class="field">
+            <label>Full Name</label>
+            <input type="text" id="regName">
+          </div>
+          <div class="field">
+            <label>Phone Number</label>
+            <input type="tel" id="regPhone">
+          </div>
+          <div class="field">
+            <label>Email (optional)</label>
+            <input type="email" id="regEmail">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" id="regPassword">
+          </div>
+          <button class="btn btn-steel" id="registerBtn" style="width:100%;">Register</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="accountLoggedIn" style="display:none;">
+      <div class="form-card">
+        <p style="margin-bottom:14px;">Logged in as <strong id="accountName"></strong></p>
+        <button class="btn btn-ghost" id="logoutBtn">Log Out</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CART -->
+  <section class="view" id="view-cart">
+    <div class="section-head"><h2>Your Cart</h2></div>
+    <div id="cartArea"></div>
+  </section>
+
+  <!-- CHECKOUT -->
+  <section class="view" id="view-checkout">
+    <div class="section-head"><h2>Checkout</h2></div>
+    <div style="display:flex;gap:30px;flex-wrap:wrap;">
+      <div class="form-card" style="flex:1;min-width:280px;">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" id="chkName">
+        </div>
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="tel" id="chkPhone">
+        </div>
+        <div class="field">
+          <label>Delivery Address</label>
+          <textarea id="chkAddress" placeholder="Street, City, State"></textarea>
+        </div>
+      </div>
+      <div class="cart-summary" id="checkoutSummary" style="margin-left:0;"></div>
+    </div>
+  </section>
+
+  <!-- ORDER CONFIRMATION -->
+  <section class="view" id="view-confirmation">
+    <div class="form-card" style="max-width:520px;margin:40px auto;text-align:center;">
+      <h2 style="font-size:30px;margin-bottom:10px;">Order Received</h2>
+      <p style="color:var(--concrete);margin-bottom:18px;">Your order <strong id="confOrderId"></strong> has been placed and payment recorded. Our team will process it shortly.</p>
+      <button class="btn btn-amber" data-view="home">Back to Home</button>
+    </div>
+  </section>
+
+  <!-- ADMIN -->
+  <section class="view" id="view-admin">
+    <div id="adminGateWrap">
+      <div class="admin-gate">
+        <h2 style="font-size:28px;margin-bottom:14px;">Admin Login</h2>
+        <div class="field" style="text-align:left;">
+          <label>Password</label>
+          <input type="password" id="adminPass" placeholder="Enter admin password">
+        </div>
+        <button class="btn btn-steel" id="adminLoginBtn" style="width:100%;">Log In</button>
+        <p style="font-size:12px;color:var(--concrete);margin-top:14px;">Set your real password in the server's .env file (ADMIN_PASSWORD).</p>
+      </div>
+    </div>
+
+    <div id="adminPanelWrap" style="display:none;">
+      <div class="toolbar">
+        <h2 style="font-size:30px;">Admin Panel</h2>
+        <button class="btn btn-ghost btn-small" id="adminLogoutBtn">Log Out</button>
+      </div>
+
+      <div class="admin-shell">
+        <div class="admin-nav">
+          <button data-tab="dashboard" class="active">Dashboard</button>
+          <button data-tab="products">Materials</button>
+          <button data-tab="rentals">Rentals</button>
+          <button data-tab="orders">Orders</button>
+          <button data-tab="contracts">Contract Requests</button>
+        </div>
+
+        <div class="admin-panel">
+
+          <div class="admin-tab active" id="tab-dashboard">
+            <div class="stat-row" id="dashStats"></div>
+            <h3 style="font-size:22px;margin-bottom:10px;">Recent Orders</h3>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Order ID</th><th>Customer</th><th>Total</th><th>Status</th></tr></thead>
+              <tbody id="dashRecentOrders"></tbody>
+            </table></div>
+          </div>
+
+          <div class="admin-tab" id="tab-products">
+            <div class="toolbar">
+              <h3 style="font-size:22px;">Building Materials</h3>
+              <button class="btn btn-amber btn-small" id="toggleAddProductForm">+ Add Material</button>
+            </div>
+            <div class="form-card" id="addProductForm" style="display:none;max-width:none;margin-bottom:20px;">
+              <div class="field-row">
+                <div class="field"><label>Item Name</label><input type="text" id="pName" placeholder="e.g. Dangote Cement (50kg)"></div>
+                <div class="field"><label>Local Name (optional)</label><input type="text" id="pLocalName" placeholder="e.g. Sima"></div>
+              </div>
+              <div class="field"><label>Description</label><textarea id="pDesc" placeholder="Short description shown on the item card"></textarea></div>
+              <div class="field-row">
+                <div class="field"><label>Category</label><input type="text" id="pCategory" placeholder="e.g. Cement, Blocks, Roofing"></div>
+                <div class="field"><label>Icon (single emoji, optional)</label><input type="text" id="pIcon" placeholder="🧱" maxlength="4"></div>
+              </div>
+              <div class="field-row">
+                <div class="field"><label>Price (₦)</label><input type="number" id="pPrice" placeholder="0"></div>
+                <div class="field"><label>Unit</label><input type="text" id="pUnit" placeholder="e.g. bag, block, sheet"></div>
+                <div class="field"><label>Quantity Available</label><input type="number" id="pStock" placeholder="0"></div>
+              </div>
+              <button class="btn btn-amber" id="submitAddProduct">+ Add Item</button>
+            </div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Name</th><th>Category</th><th>Price (₦)</th><th>Stock</th><th>Actions</th></tr></thead>
+              <tbody id="productsTable"></tbody>
+            </table></div>
+          </div>
+
+          <div class="admin-tab" id="tab-rentals">
+            <div class="toolbar">
+              <h3 style="font-size:22px;">Rental Equipment</h3>
+              <button class="btn btn-amber btn-small" id="toggleAddRentalForm">+ Add Rental Item</button>
+            </div>
+            <div class="form-card" id="addRentalForm" style="display:none;max-width:none;margin-bottom:20px;">
+              <div class="field-row">
+                <div class="field"><label>Item Name</label><input type="text" id="rName" placeholder="e.g. Concrete Mixer"></div>
+                <div class="field"><label>Local Name (optional)</label><input type="text" id="rLocalName" placeholder="e.g. Lada, Lariya"></div>
+              </div>
+              <div class="field"><label>Description</label><textarea id="rDesc" placeholder="Short description shown on the item card"></textarea></div>
+              <div class="field-row">
+                <div class="field"><label>Category</label><input type="text" id="rCategory" placeholder="e.g. Mixing, Power, Access"></div>
+                <div class="field"><label>Icon (single emoji, optional)</label><input type="text" id="rIcon" placeholder="🔧" maxlength="4"></div>
+              </div>
+              <div class="field-row">
+                <div class="field"><label>Price per Day (₦)</label><input type="number" id="rPrice" placeholder="0"></div>
+                <div class="field"><label>Deposit Amount (₦)</label><input type="number" id="rDeposit" placeholder="0"></div>
+                <div class="field"><label>Quantity Available</label><input type="number" id="rStock" placeholder="0"></div>
+              </div>
+              <button class="btn btn-amber" id="submitAddRental">+ Add Item</button>
+            </div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Name</th><th>Category</th><th>Price/day (₦)</th><th>Stock</th><th>Actions</th></tr></thead>
+              <tbody id="rentalsTable"></tbody>
+            </table></div>
+          </div>
+
+          <div class="admin-tab" id="tab-orders">
+            <div class="toolbar">
+              <h3 style="font-size:22px;">Customer Orders</h3>
+              <div class="row-actions">
+                <button class="btn btn-ghost btn-small" id="bulkApproveBtn">Approve Selected</button>
+                <button class="btn btn-ghost btn-small" id="bulkCancelBtn">Cancel Selected</button>
+              </div>
+            </div>
+            <div class="table-wrap"><table>
+              <thead><tr><th class="checkbox-cell"><input type="checkbox" id="selectAllOrders"></th><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody id="ordersTable"></tbody>
+            </table></div>
+          </div>
+
+          <div class="admin-tab" id="tab-contracts">
+            <h3 style="font-size:22px;margin-bottom:14px;">Contract Requests</h3>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Name</th><th>Type</th><th>Location</th><th>Budget</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody id="contractsTable"></tbody>
+            </table></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>BGIC — Building Materials · Rentals · Contracts.</footer>
+<div class="toast" id="toast"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
